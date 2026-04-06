@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio</title>
+</head>
+<body>
+    <script>
+        alert("Você realizará agora uma pesquisa sobre preços de combustíveis:");
+        
+        let distancia_Percorrida = parseFloat(prompt("Qual a distância percorrida da sua casa até seu trabalho (em km)?"));
+        let consumo_Medio = parseFloat(prompt("Qual o consumo médio do seu veículo (em km/L)?"));
+        let consumo_Necessario_Litros = distancia_Percorrida / consumo_Medio;
+
+        alert("O consumo necessário é: " + consumo_Necessario_Litros +"l.");
+
+        let numero_Postos = parseInt(prompt("Em quantos postos você pesquisou?"));
+        menor_Valor = Infinity;
+        valor_Total = 0;
+        for (let i = 0; i < numero_Postos; i++) {
+            let preco_Posto = parseFloat(prompt(`Qual o preço do combustível no posto ${i + 1} (em R$)?`));
+            valor_Total += preco_Posto;
+            if (preco_Posto < menor_Valor) {
+                menor_Valor = preco_Posto;
+            }
+
+        media = valor_Total / numero_Postos;
+        gasto_Diario = 2*(consumo_Necessario_Litros * menor_Valor)
+        }
+
+        document.write(`O consumo necessário: ${consumo_Necessario_Litros}l<br>`);
+        document.write(`A média dos valores pesquisados: R$${media}<br>`);
+        document.write(`O menor valor pesquisado: R$${menor_Valor}<br>`);
+        document.write(`O gasto diário (ida e volta): R$${gasto_Diario}`);
+    </script>
+</body>
+</html>

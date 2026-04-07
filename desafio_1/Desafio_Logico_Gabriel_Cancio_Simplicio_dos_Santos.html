@@ -9,30 +9,41 @@
     <script>
         alert("Você realizará agora uma pesquisa sobre preços de combustíveis:");
         
-        let distancia_Percorrida = parseFloat(prompt("Qual a distância percorrida da sua casa até seu trabalho (em km)?"));
-        let consumo_Medio = parseFloat(prompt("Qual o consumo médio do seu veículo (em km/L)?"));
-        let consumo_Necessario_Litros = distancia_Percorrida / consumo_Medio;
+        function ValidarNumero (valor, nome) {
+            while (isNaN(valor) || valor <= 0) {
+                alert("Número inválido. Tente novamente.");
+                valor = parseFloat(prompt(`Insira um valor válido no campo de ${nome}:`));
+            }
+            return valor;
+        }
 
+        let distancia_Percorrida = parseFloat(prompt("Qual a distância percorrida da sua casa até seu trabalho (em km)?"));
+        distancia_Percorrida = ValidarNumero(distancia_Percorrida, "distância percorrida");
+        let consumo_Medio = parseFloat(prompt("Qual o consumo médio do seu veículo (em km/L)?"));
+        consumo_Medio = ValidarNumero(consumo_Medio, "consumo médio");
+        let consumo_Necessario_Litros = distancia_Percorrida / consumo_Medio;
         alert("O consumo necessário é: " + consumo_Necessario_Litros +"l.");
 
         let numero_Postos = parseInt(prompt("Em quantos postos você pesquisou?"));
+        numero_Postos = ValidarNumero(numero_Postos, "número de postos");
         menor_Valor = Infinity;
         valor_Total = 0;
         for (let i = 0; i < numero_Postos; i++) {
             let preco_Posto = parseFloat(prompt(`Qual o preço do combustível no posto ${i + 1} (em R$)?`));
+            preco_Posto = ValidarNumero(preco_Posto, `preço dos posto ${i + 1}`);
             valor_Total += preco_Posto;
             if (preco_Posto < menor_Valor) {
                 menor_Valor = preco_Posto;
             }
 
         media = valor_Total / numero_Postos;
-        gasto_Diario = 2*(consumo_Necessario_Litros * menor_Valor)
+        gasto_Diario = 2*(consumo_Necessario_Litros * menor_Valor);
         }
 
-        document.write(`O consumo necessário: ${consumo_Necessario_Litros}l<br>`);
-        document.write(`A média dos valores pesquisados: R$${media}<br>`);
-        document.write(`O menor valor pesquisado: R$${menor_Valor}<br>`);
-        document.write(`O gasto diário (ida e volta): R$${gasto_Diario}`);
+        document.write(`O consumo necessário: ${consumo_Necessario_Litros.toFixed(2)}l<br>`);
+        document.write(`A média dos valores pesquisados: R$${media.toFixed(2)}<br>`);
+        document.write(`O menor valor pesquisado: R$${menor_Valor.toFixed(2)}<br>`);
+        document.write(`O gasto diário (ida e volta): R$${gasto_Diario.toFixed(2)}`);
     </script>
 </body>
 </html>
